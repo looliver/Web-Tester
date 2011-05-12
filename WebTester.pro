@@ -10,9 +10,9 @@ TARGET = WebTester
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        tester.cpp
+SOURCES += src/main.cpp\
+        src/tester.cpp
 
-HEADERS  += tester.h
+HEADERS  += src/tester.h
 
-FORMS    += tester.ui
+FORMS    += gui/tester.ui
