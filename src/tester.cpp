@@ -2,6 +2,7 @@
 #include "ui_tester.h"
 
 #include <QNetworkRequest>
+#include <QUrl>
 
 Tester::Tester(QWidget *parent) :
     QWidget(parent),
@@ -29,7 +30,16 @@ void Tester::on_requestGet_clicked()
 
 void Tester::on_requestPost_clicked()
 {
+    QNetworkRequest request;
+    request.setUrl(ui->webUrlPath->text());
 
+    QByteArray data;
+
+    for (int i = 0; i < ui->keyValuePairs->count(); i++) {
+        data.append(i == 0 ? "" : "&").append(QString(QUrl::toPercentEncoding(ui->keyValuePairs->item(i)->text())).replace("%20", "+").replace("%3D", "="));
+    }
+
+    netManager->post(request, data);
 }
 
 void Tester::on_addPair_clicked()

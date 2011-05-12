@@ -170,7 +170,7 @@
        </property>
        <property name="font">
         <font>
-         <family>Consolas</family>
+         <family>Courier New</family>
         </font>
        </property>
        <property name="lineWrapMode">
