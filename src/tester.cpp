@@ -23,15 +23,17 @@ Tester::~Tester()
 void Tester::on_requestGet_clicked()
 {
     QNetworkRequest request;
-    request.setUrl(ui->webUrlPath->text());
+    request.setUrl(ui->webUrlPath->currentText());
 
     netManager->get(request);
+
+    insertUrlPath();
 }
 
 void Tester::on_requestPost_clicked()
 {
     QNetworkRequest request;
-    request.setUrl(ui->webUrlPath->text());
+    request.setUrl(ui->webUrlPath->currentText());
 
     QByteArray data;
 
@@ -40,6 +42,8 @@ void Tester::on_requestPost_clicked()
     }
 
     netManager->post(request, data);
+
+    insertUrlPath();
 }
 
 void Tester::on_addPair_clicked()
@@ -83,5 +87,22 @@ void Tester::requestFinished(QNetworkReply *reply)
     if (reply->isFinished()) {
         ui->responseRender->clear();
         ui->responseRender->append(reply->readAll());
+    }
+}
+
+void Tester::insertUrlPath()
+{
+    QString currText = ui->webUrlPath->currentText();
+    bool isContain = false;
+
+    for (int i = 0; i < ui->webUrlPath->count(); ++i) {
+        if (currText == ui->webUrlPath->itemText(i)) {
+            isContain = true;
+            break;
+        }
+    }
+
+    if (!isContain) {
+        ui->webUrlPath->addItem(currText);
     }
 }

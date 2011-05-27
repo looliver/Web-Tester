@@ -30,6 +30,8 @@ private:
     Ui::Tester *ui;
 
     QNetworkAccessManager *netManager;
+
+    void insertUrlPath();
 };
 
 #endif // TESTER_H
