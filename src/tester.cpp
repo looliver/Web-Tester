@@ -70,6 +70,7 @@ void Tester::requestFinished(QNetworkReply *reply)
     QList<QNetworkReply::RawHeaderPair> rawHeaders = reply->rawHeaderPairs();
 
     ui->responseRaw->clear();
+    //
 
     QString attribute = QString("%1 %2")
             .arg(reply->attribute(QNetworkRequest::HttpStatusCodeAttribute).toString(),
